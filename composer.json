@@ -1,0 +1,20 @@
+{
+  "name": "jakovic/timer",
+  "description": "A simple PHP package for measuring execution time",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Jakovic\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Simo Jakovic",
+      "email": "s.jakovic@gmail.com"
+    }
+  ]
+}
