@@ -4,37 +4,38 @@ namespace Jakovic;
 
 class Timer
 {
-    private static float $startTime;
-    private static float $endTime;
+    private float $startTime;
+    private ?float $endTime = null;
 
-    public static function start(): void
+    public function start(): void
     {
-        self::$startTime = microtime(true);
+        $this->startTime = microtime(true);
+        $this->endTime = null;
     }
 
-    public static function end(): void
+    public function end(): void
     {
-        self::$endTime = microtime(true);
+        $this->endTime = microtime(true);
     }
 
-    public static function getSeconds(): float
+    public function getSeconds(): float
     {
-        return self::$endTime - self::$startTime;
+        return ($this->endTime ?? microtime(true)) - $this->startTime;
     }
 
-    public static function getMinutes(): float
+    public function getMinutes(): float
     {
-        return self::getSeconds() / 60;
+        return $this->getSeconds() / 60;
     }
 
-    public static function getHours(): float
+    public function getHours(): float
     {
-        return self::getSeconds() / 3600;
+        return $this->getSeconds() / 3600;
     }
 
-    public static function total(): string
+    public function total(): string
     {
-        $totalSeconds = (int)self::getSeconds();
+        $totalSeconds = (int) $this->getSeconds();
         $hours = intdiv($totalSeconds, 3600);
         $minutes = intdiv($totalSeconds % 3600, 60);
         $seconds = $totalSeconds % 60;

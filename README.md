@@ -10,7 +10,7 @@ composer require jakovic/timer
 ```
 
 ## 🔧 Usage
-First, import and use the `Timer` class:
+First, import and create an instance of the `Timer` class:
 
 ```php
 use Jakovic\Timer;
@@ -21,23 +21,43 @@ use Jakovic\Timer;
 ```php
 use Jakovic\Timer;
 
-Timer::start();
+$timer = new Timer();
+$timer->start();
 sleep(5); // Simulate some process
-Timer::end();
+$timer->end();
 
-echo Timer::getSeconds(); // e.g. 5.0032
-echo Timer::getMinutes(); // e.g. 0.0833
-echo Timer::getHours();   // e.g. 0.0014
-echo Timer::total();      // e.g. 00:00:05
+echo $timer->getSeconds(); // e.g. 5.0032
+echo $timer->getMinutes(); // e.g. 0.0833
+echo $timer->getHours();   // e.g. 0.0014
+echo $timer->total();      // e.g. 00:00:05
+```
+
+### ✅ Multiple Timers Example
+
+```php
+$timer1 = new Timer();
+$timer2 = new Timer();
+
+$timer1->start();
+sleep(3);
+$timer1->end();
+
+$timer2->start();
+sleep(5);
+$timer2->end();
+
+echo "Timer 1: " . $timer1->total() . "\n"; // 00:00:03
+echo "Timer 2: " . $timer2->total() . "\n"; // 00:00:05
 ```
 
 ## 🛠 Methods
-- `start()` - Starts the timer
-- `end()` - Stops the timer
-- `getSeconds()` - Returns elapsed time in seconds (float), e.g., `5.0032`
-- `getMinutes()` - Returns elapsed time in minutes (float), e.g., `0.0833`
-- `getHours()` - Returns elapsed time in hours (float), e.g., `0.0014`
-- `total()` - Returns elapsed time in `H:i:s` format, e.g., `00:00:05`
+
+- `$timer->start()` - Starts the timer
+- `$timer->end()` - Stops the timer
+- `$timer->getSeconds()` - Returns elapsed time in seconds (float), e.g., `5.0032`
+- `$timer->getMinutes()` - Returns elapsed time in minutes (float), e.g., `0.0833`
+- `$timer->getHours()` - Returns elapsed time in hours (float), e.g., `0.0014`
+- `$timer->total()` - Returns elapsed time in `H:i:s` format, e.g., `00:00:05`
 
 ## 📜 License
-This package is open-sourced software licensed under the [MIT License](LICENSE).
+This package is open-sourced software licensed under the [MIT License](./LICENSE).
